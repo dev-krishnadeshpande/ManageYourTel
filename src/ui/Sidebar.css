@@ -1,0 +1,30 @@
+/* src/Sidebar.css */
+
+.sidebar {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding-top: 20px;
+}
+
+.sidebar-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-item {
+  padding: 15px;
+  color: grey;
+  text-align: center;
+  font-size: 18px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sidebar-item:hover {
+  background-color: #575757;
+}
