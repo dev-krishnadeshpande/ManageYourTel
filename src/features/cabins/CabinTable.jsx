@@ -6,6 +6,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
+import toast from "react-hot-toast";
 
 import "./CabinTable.css";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -25,6 +26,10 @@ export default function CabinTable(cabins) {
     onSuccess: () => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ["cabins"] });
+      toast.success("Cabin deleted successfully!");
+    },
+    onError: () => {
+      toast.error("Coudn't delete the cabin with given id");
     },
   });
 
