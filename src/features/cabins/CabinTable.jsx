@@ -8,12 +8,26 @@ import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
 
 import "./CabinTable.css";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteCabin } from "../../services/apiCabins";
 
-function createData({ name, maxCapacity, regularPrice, discount, image }) {
-  return { name, maxCapacity, regularPrice, discount, image };
+function createData({ id, name, maxCapacity, regularPrice, discount, image }) {
+  return { id, name, maxCapacity, regularPrice, discount, image };
 }
 
 export default function CabinTable(cabins) {
+  // Access the client
+  const queryClient = useQueryClient();
+
+  // Mutations
+  const mutation = useMutation({
+    mutationFn: deleteCabin,
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ["cabins"] });
+    },
+  });
+
   const cabinsData = Object.values(cabins)[0];
 
   const rows = cabinsData.map((cabin) => createData(cabin));
@@ -48,7 +62,14 @@ export default function CabinTable(cabins) {
               <TableCell align="right">{row.regularPrice}</TableCell>
               <TableCell align="right">{row.discount}</TableCell>
               <TableCell align="right">
-                <Button type="small">Delete</Button>
+                <Button
+                  onClick={() => {
+                    mutation.mutate(row.id);
+                  }}
+                  type="small"
+                >
+                  Delete
+                </Button>
               </TableCell>
             </TableRow>
           ))}
