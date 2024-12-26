@@ -1,5 +1,11 @@
+import Cabin from "../features/cabins/Cabin";
+
 const Cabins = () => {
-  return <div>Cabins</div>;
+  return (
+    <div>
+      <Cabin />
+    </div>
+  );
 };
 
 export default Cabins;

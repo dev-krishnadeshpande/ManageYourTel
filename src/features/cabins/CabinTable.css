@@ -1,0 +1,11 @@
+.cabin-image-container {
+  width: 96px; /* Set the width of the image */
+  height: auto; /* Maintain the aspect ratio */
+}
+
+.cabin-image {
+  width: 100%; /* Make the image take the full width of the container */
+  height: 100%; /* Make the image take the full height of the container */
+  object-fit: contain; /* Ensure the image maintains its aspect ratio while fitting the container */
+  object-position: center; /* Center the image inside the container */
+}
