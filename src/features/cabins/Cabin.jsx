@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getCabins } from "../../services/apiCabins";
 import LoadingSpinner from "../../ui/LoadingSpinner";
 import CabinTable from "./CabinTable";
+import AddCabin from "./AddCabin";
 
 export default function Cabin() {
   // Queries
@@ -17,6 +18,7 @@ export default function Cabin() {
   return (
     <>
       <CabinTable cabins={cabins} />
+      <AddCabin />
     </>
   );
 }
