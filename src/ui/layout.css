@@ -19,4 +19,5 @@
 .main-container {
   background-color: #eceff1;
   padding: 4rem 4.8rem 6.4rem;
+  overflow: scroll;
 }

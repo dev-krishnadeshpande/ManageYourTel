@@ -19,7 +19,11 @@ h2 {
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 28px;
+}
+
+.form-group span {
+  color: red;
 }
 
 label {
