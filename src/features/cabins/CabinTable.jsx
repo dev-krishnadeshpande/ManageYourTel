@@ -82,7 +82,6 @@ export default function CabinTable(cabins) {
           </TableBody>
         </Table>
       </TableContainer>
-      <Button type="primary">Add Cabin</Button>
     </>
   );
 }

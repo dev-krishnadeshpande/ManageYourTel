@@ -5,7 +5,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { createCabin } from "../../services/apiCabins";
 
-const AddCabin = () => {
+// eslint-disable-next-line react/prop-types
+const AddCabin = ({ showAddCabin }) => {
   const { register, handleSubmit, getValues, reset, formState } = useForm();
   const { errors } = formState;
 
@@ -19,6 +20,7 @@ const AddCabin = () => {
       queryClient.invalidateQueries({ queryKey: ["cabins"] });
       toast.success("Cabin created successfully!");
       reset();
+      showAddCabin(false);
     },
     onError: (error) => {
       toast.error(error.message);
