@@ -4,11 +4,13 @@ import { Button, TableCell, TableRow } from "@mui/material";
 
 import AddCabin from "./AddCabin";
 import { useDeleteCabin } from "./useDeleteCabin";
+import { useAddCabin } from "./useAddCabin";
 
 const CabinTableRow = ({ row }) => {
   const [showAddCabin, setShowAddCabin] = useState(false);
 
   const deleteCabinMutate = useDeleteCabin();
+  const { addCabinMutate } = useAddCabin();
 
   return (
     <>
@@ -39,6 +41,18 @@ const CabinTableRow = ({ row }) => {
             type="small"
           >
             Edit
+          </Button>
+          <Button
+            onClick={() =>
+              addCabinMutate({
+                ...row,
+                name: `Copy of ${row.name}`,
+                id: row.id * 100,
+              })
+            }
+            type="small"
+          >
+            Duplicate
           </Button>
         </TableCell>
       </TableRow>
