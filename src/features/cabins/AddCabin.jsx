@@ -1,14 +1,13 @@
 import { useForm } from "react-hook-form";
-import "./add-cabin.css";
 import { Button } from "@mui/material";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
-import { createEditCabin } from "../../services/apiCabins";
+
+import "./add-cabin.css";
+import { useAddCabin } from "./useAddCabin";
+import { useEditCabin } from "./useEditCabin";
 
 // eslint-disable-next-line react/prop-types
 const AddCabin = ({ setShowAddCabin, cabinToEdit = {} }) => {
   const { id: editId, ...editValues } = cabinToEdit;
-
   const isEditingSession = Boolean(editId);
 
   const { register, handleSubmit, getValues, reset, formState } = useForm({
@@ -16,41 +15,14 @@ const AddCabin = ({ setShowAddCabin, cabinToEdit = {} }) => {
   });
   const { errors } = formState;
 
-  // Access the client
-  const queryClient = useQueryClient();
-
-  const { mutate: mutateAddCabin, isLoading: isCreatingCabin } = useMutation({
-    mutationFn: createEditCabin,
-    onSuccess: () => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["cabins"] });
-      toast.success("Cabin created successfully!");
-      reset();
-      setShowAddCabin(false);
-    },
-    onError: (error) => {
-      toast.error(error.message);
-      reset();
-      setShowAddCabin(false);
-    },
-  });
-
-  const { mutate: mutateEditCabin, isLoading: isEditingCabin } = useMutation({
-    mutationFn: ({ editedCabinData, id }) =>
-      createEditCabin(editedCabinData, id),
-    onSuccess: () => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["cabins"] });
-      toast.success("Cabin updated successfully!");
-      reset();
-      setShowAddCabin(false);
-    },
-    onError: (error) => {
-      toast.error(error.message);
-      reset();
-      setShowAddCabin(false);
-    },
-  });
+  const { addCabinMutate, isCreatingCabin } = useAddCabin(
+    reset,
+    setShowAddCabin
+  );
+  const { editCabinMutate, isEditingCabin } = useEditCabin(
+    reset,
+    setShowAddCabin
+  );
 
   const isProcessing = isCreatingCabin || isEditingCabin;
 
@@ -59,12 +31,12 @@ const AddCabin = ({ setShowAddCabin, cabinToEdit = {} }) => {
       let isImageUpdated = typeof data.image !== "string";
       if (isImageUpdated) {
         let cabinData = { ...data, image: data.image[0] };
-        mutateEditCabin({ editedCabinData: cabinData, id: editId });
+        editCabinMutate({ editedCabinData: cabinData, id: editId });
       } else {
-        mutateEditCabin({ editedCabinData: data, id: editId });
+        editCabinMutate({ editedCabinData: data, id: editId });
       }
     } else {
-      mutateAddCabin({ ...data, image: data.image[0] });
+      addCabinMutate({ ...data, image: data.image[0] });
     }
   };
 
