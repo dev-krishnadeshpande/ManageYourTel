@@ -12,8 +12,6 @@ export async function getCabins() {
 }
 
 export async function deleteCabin(id) {
-  console.log('deleteCabin id', id);
-
   // REMEMBER RLS POLICIES 
   const { data, error } = await supabase.from("cabins").delete().eq("id", id);
 
@@ -25,11 +23,6 @@ export async function deleteCabin(id) {
 }
 
 export async function createEditCabin(newCabin) {
-  // console.log('newCabin', newCabin);
-  // console.log('editId', editId);
-  console.log('newCabin', newCabin);
-
-
   let imageName, imagePath;
   let returnedData, returnedError, returnedStorageError;
 
@@ -54,7 +47,6 @@ export async function createEditCabin(newCabin) {
     returnedStorageError = storageError;
   } else {
     const { editId, ...updatedCabin } = newCabin;
-    console.log('updatedCabin', updatedCabin);
 
     const { data, error } = await supabase
       .from('cabins')

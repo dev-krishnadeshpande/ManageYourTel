@@ -7,10 +7,7 @@ import { createEditCabin } from "../../services/apiCabins";
 
 // eslint-disable-next-line react/prop-types
 const AddCabin = ({ setShowAddCabin, cabinToEdit = {} }) => {
-  console.log("cabinToEdit", cabinToEdit);
-
   const { id: editId, ...editValues } = cabinToEdit;
-  console.log("editId", editId);
 
   const isEditingSession = Boolean(editId);
 

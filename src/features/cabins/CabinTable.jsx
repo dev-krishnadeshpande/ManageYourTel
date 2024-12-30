@@ -9,8 +9,16 @@ import Paper from "@mui/material/Paper";
 import "./cabin-table.css";
 import CabinTableRow from "./CabinTableRow";
 
-function createData({ id, name, maxCapacity, regularPrice, discount, image }) {
-  return { id, name, maxCapacity, regularPrice, discount, image };
+function createData({
+  id,
+  name,
+  maxCapacity,
+  regularPrice,
+  discount,
+  description,
+  image,
+}) {
+  return { id, name, maxCapacity, regularPrice, discount, description, image };
 }
 
 // eslint-disable-next-line react/prop-types
