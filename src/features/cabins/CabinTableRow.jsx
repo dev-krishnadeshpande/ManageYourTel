@@ -1,29 +1,14 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import { Button, TableCell, TableRow } from "@mui/material";
 
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteCabin } from "../../services/apiCabins";
-import { useState } from "react";
 import AddCabin from "./AddCabin";
-import toast from "react-hot-toast";
+import { useDeleteCabin } from "./useDeleteCabin";
 
 const CabinTableRow = ({ row }) => {
   const [showAddCabin, setShowAddCabin] = useState(false);
-  // Access the client
-  const queryClient = useQueryClient();
 
-  // Mutations
-  const mutation = useMutation({
-    mutationFn: deleteCabin,
-    onSuccess: () => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["cabins"] });
-      toast.success("Cabin deleted successfully!");
-    },
-    onError: () => {
-      toast.error("Coudn't delete the cabin with given id");
-    },
-  });
+  const deleteCabinMutate = useDeleteCabin();
 
   return (
     <>
@@ -41,7 +26,7 @@ const CabinTableRow = ({ row }) => {
         <TableCell align="right">
           <Button
             onClick={() => {
-              mutation.mutate(row.id);
+              deleteCabinMutate(row.id);
             }}
             type="small"
           >
