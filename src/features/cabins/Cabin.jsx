@@ -20,11 +20,15 @@ export default function Cabin() {
 
   return (
     <>
-      <CabinTable cabins={cabins} />
+      <CabinTable
+        cabins={cabins}
+        showAddCabin={showAddCabin}
+        setShowAddCabin={setShowAddCabin}
+      />
       <Button type="primary" onClick={() => setShowAddCabin(true)}>
         Add Cabin
       </Button>
-      {showAddCabin && <AddCabin showAddCabin={setShowAddCabin} />}
+      {showAddCabin && <AddCabin setShowAddCabin={setShowAddCabin} />}
     </>
   );
 }

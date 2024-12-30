@@ -3,24 +3,35 @@ import "./add-cabin.css";
 import { Button } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { createCabin } from "../../services/apiCabins";
+import { createEditCabin } from "../../services/apiCabins";
 
 // eslint-disable-next-line react/prop-types
-const AddCabin = ({ showAddCabin }) => {
-  const { register, handleSubmit, getValues, reset, formState } = useForm();
+const AddCabin = ({ setShowAddCabin, cabinToEdit = {} }) => {
+  console.log("cabinToEdit", cabinToEdit);
+
+  const { id: editId, ...editValues } = cabinToEdit;
+  console.log("editId", editId);
+
+  const isEditingSession = Boolean(editId);
+
+  const { register, handleSubmit, getValues, reset, formState } = useForm({
+    defaultValues: isEditingSession ? editValues : {},
+  });
   const { errors } = formState;
 
   // Access the client
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
-    mutationFn: createCabin,
+    mutationFn: createEditCabin,
     onSuccess: () => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ["cabins"] });
-      toast.success("Cabin created successfully!");
+      isEditingSession
+        ? toast.success("Cabin updated successfully!")
+        : toast.success("Cabin created successfully!");
       reset();
-      showAddCabin(false);
+      setShowAddCabin(false);
     },
     onError: (error) => {
       toast.error(error.message);
@@ -28,7 +39,11 @@ const AddCabin = ({ showAddCabin }) => {
   });
 
   const onSubmit = (data) => {
-    mutate({ ...data, image: data.image[0] });
+    if (isEditingSession) {
+      mutate({ ...data, editId });
+    } else {
+      mutate({ ...data, image: data.image[0] });
+    }
   };
 
   return (
@@ -99,7 +114,9 @@ const AddCabin = ({ showAddCabin }) => {
           <input
             type="text"
             id="description"
-            {...register("description", { required: "This field is required" })}
+            {...register("description", {
+              required: isEditingSession ? false : "This field is required",
+            })}
           />
           {errors?.description?.message && (
             <span>{errors?.description?.message}</span>
@@ -111,7 +128,9 @@ const AddCabin = ({ showAddCabin }) => {
           <input
             type="file"
             id="image"
-            {...register("image", { required: "You must upload a file" })}
+            {...register("image", {
+              required: isEditingSession ? false : "You must upload a file",
+            })}
           />
           {errors?.image?.message && <span>{errors?.image?.message}</span>}
         </div>
@@ -119,7 +138,9 @@ const AddCabin = ({ showAddCabin }) => {
         <div className="btn-container">
           <Button type="reset">Cancel</Button>
 
-          <Button type="submit">Submit</Button>
+          <Button type="submit">
+            {isEditingSession ? "Edit cabin" : "Create new cabin"}
+          </Button>
         </div>
       </form>
     </div>
