@@ -19,27 +19,52 @@ const AddCabin = ({ setShowAddCabin, cabinToEdit = {} }) => {
   // Access the client
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation({
+  const { mutate: mutateAddCabin, isLoading: isCreatingCabin } = useMutation({
     mutationFn: createEditCabin,
     onSuccess: () => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ["cabins"] });
-      isEditingSession
-        ? toast.success("Cabin updated successfully!")
-        : toast.success("Cabin created successfully!");
+      toast.success("Cabin created successfully!");
       reset();
       setShowAddCabin(false);
     },
     onError: (error) => {
       toast.error(error.message);
+      reset();
+      setShowAddCabin(false);
     },
   });
 
+  const { mutate: mutateEditCabin, isLoading: isEditingCabin } = useMutation({
+    mutationFn: ({ editedCabinData, id }) =>
+      createEditCabin(editedCabinData, id),
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ["cabins"] });
+      toast.success("Cabin updated successfully!");
+      reset();
+      setShowAddCabin(false);
+    },
+    onError: (error) => {
+      toast.error(error.message);
+      reset();
+      setShowAddCabin(false);
+    },
+  });
+
+  const isProcessing = isCreatingCabin || isEditingCabin;
+
   const onSubmit = (data) => {
     if (isEditingSession) {
-      mutate({ ...data, editId });
+      let isImageUpdated = typeof data.image !== "string";
+      if (isImageUpdated) {
+        let cabinData = { ...data, image: data.image[0] };
+        mutateEditCabin({ editedCabinData: cabinData, id: editId });
+      } else {
+        mutateEditCabin({ editedCabinData: data, id: editId });
+      }
     } else {
-      mutate({ ...data, image: data.image[0] });
+      mutateAddCabin({ ...data, image: data.image[0] });
     }
   };
 
@@ -53,6 +78,7 @@ const AddCabin = ({ setShowAddCabin, cabinToEdit = {} }) => {
             type="text"
             id="name"
             {...register("name", { required: "This field is required" })}
+            disabled={isProcessing}
           />
           {errors?.name?.message && <span>{errors?.name?.message}</span>}
         </div>
@@ -69,6 +95,7 @@ const AddCabin = ({ setShowAddCabin, cabinToEdit = {} }) => {
                 message: "Capacity should be at least 1",
               },
             })}
+            disabled={isProcessing}
           />
           {errors?.maxCapacity?.message && (
             <span>{errors?.maxCapacity?.message}</span>
@@ -83,6 +110,7 @@ const AddCabin = ({ setShowAddCabin, cabinToEdit = {} }) => {
             {...register("regularPrice", {
               required: "This field is required",
             })}
+            disabled={isProcessing}
           />
           {errors?.regularPrice?.message && (
             <span>{errors?.regularPrice?.message}</span>
@@ -100,6 +128,7 @@ const AddCabin = ({ setShowAddCabin, cabinToEdit = {} }) => {
                 +value <= +getValues().regularPrice ||
                 "Discount should be less than reugular price",
             })}
+            disabled={isProcessing}
           />
           {errors?.discount?.message && (
             <span>{errors?.discount?.message}</span>
@@ -114,6 +143,7 @@ const AddCabin = ({ setShowAddCabin, cabinToEdit = {} }) => {
             {...register("description", {
               required: isEditingSession ? false : "This field is required",
             })}
+            disabled={isProcessing}
           />
           {errors?.description?.message && (
             <span>{errors?.description?.message}</span>
@@ -128,6 +158,7 @@ const AddCabin = ({ setShowAddCabin, cabinToEdit = {} }) => {
             {...register("image", {
               required: isEditingSession ? false : "You must upload a file",
             })}
+            disabled={isProcessing}
           />
           {errors?.image?.message && <span>{errors?.image?.message}</span>}
         </div>

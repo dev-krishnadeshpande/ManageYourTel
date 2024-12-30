@@ -57,13 +57,13 @@ const CabinTableRow = ({ row }) => {
           </Button>
         </TableCell>
       </TableRow>
-      <TableRow>
-        <TableCell>
-          {showAddCabin && (
+      {showAddCabin && (
+        <TableRow>
+          <TableCell>
             <AddCabin cabinToEdit={row} setShowAddCabin={setShowAddCabin} />
-          )}
-        </TableCell>
-      </TableRow>
+          </TableCell>
+        </TableRow>
+      )}
     </>
   );
 };
