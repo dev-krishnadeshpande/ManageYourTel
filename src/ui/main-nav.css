@@ -1,0 +1,45 @@
+/* MainNav.css */
+
+/* Container for the navigation list */
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* Style for each individual navigation link */
+.styled-navlink {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  color: var(--color-grey-600);
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: 1.2rem 2.4rem;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+/* Hover, active, and active link states */
+.styled-navlink:hover,
+.styled-navlink:active,
+.styled-navlink.active {
+  color: var(--color-grey-800);
+  background-color: var(--color-grey-50);
+  border-radius: var(--border-radius-sm);
+}
+
+/* Style for the icons inside the links */
+.styled-navlink svg {
+  width: 2.4rem;
+  height: 2.4rem;
+  color: var(--color-grey-400);
+  transition: all 0.3s;
+}
+
+/* Hover, active, and active link states for icons */
+.styled-navlink:hover svg,
+.styled-navlink:active svg,
+.styled-navlink.active svg {
+  color: var(--color-brand-600);
+}
