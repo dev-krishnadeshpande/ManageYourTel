@@ -1,13 +1,11 @@
-import { useState } from "react";
 import { Button, TableCell, TableRow } from "@mui/material";
 
-import AddCabin from "./AddCabin";
 import { useDeleteCabin } from "./useDeleteCabin";
 import { useAddCabin } from "./useAddCabin";
+import Modal from "../../ui/Modal";
+import CreateEditCabinForm from "./CreateEditCabinForm";
 
 const CabinTableRow = ({ row }) => {
-  const [showAddCabin, setShowAddCabin] = useState(false);
-
   const deleteCabinMutate = useDeleteCabin();
   const { addCabinMutate } = useAddCabin();
 
@@ -33,14 +31,14 @@ const CabinTableRow = ({ row }) => {
           >
             Delete
           </Button>
-          <Button
-            onClick={() => {
-              setShowAddCabin(true);
-            }}
-            type="small"
-          >
-            Edit
-          </Button>
+          <Modal>
+            <Modal.Open opens="edit-cabin-form">
+              <Button>Edit</Button>
+            </Modal.Open>
+            <Modal.Window name="edit-cabin-form">
+              <CreateEditCabinForm cabinToEdit={row} />
+            </Modal.Window>
+          </Modal>
           <Button
             onClick={() =>
               addCabinMutate({
@@ -55,13 +53,6 @@ const CabinTableRow = ({ row }) => {
           </Button>
         </TableCell>
       </TableRow>
-      {showAddCabin && (
-        <TableRow>
-          <TableCell>
-            <AddCabin cabinToEdit={row} setShowAddCabin={setShowAddCabin} />
-          </TableCell>
-        </TableRow>
-      )}
     </>
   );
 };
