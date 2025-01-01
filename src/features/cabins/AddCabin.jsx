@@ -5,8 +5,7 @@ import "./add-cabin.css";
 import { useAddCabin } from "./useAddCabin";
 import { useEditCabin } from "./useEditCabin";
 
-// eslint-disable-next-line react/prop-types
-const AddCabin = ({ setShowAddCabin, cabinToEdit = {} }) => {
+const AddCabin = ({ onCloseModal, cabinToEdit = {} }) => {
   const { id: editId, ...editValues } = cabinToEdit;
   const isEditingSession = Boolean(editId);
 
@@ -15,14 +14,8 @@ const AddCabin = ({ setShowAddCabin, cabinToEdit = {} }) => {
   });
   const { errors } = formState;
 
-  const { addCabinMutate, isCreatingCabin } = useAddCabin(
-    reset,
-    setShowAddCabin
-  );
-  const { editCabinMutate, isEditingCabin } = useEditCabin(
-    reset,
-    setShowAddCabin
-  );
+  const { addCabinMutate, isCreatingCabin } = useAddCabin(reset, onCloseModal);
+  const { editCabinMutate, isEditingCabin } = useEditCabin(reset, onCloseModal);
 
   const isProcessing = isCreatingCabin || isEditingCabin;
 
