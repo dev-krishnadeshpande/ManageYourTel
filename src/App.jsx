@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import Dashboard from "./pages/Dashboard";
 import Bookings from "./pages/Bookings";
@@ -17,61 +18,44 @@ const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route index element={<Navigate replace to="dashboard" />}></Route>
+            <Route path="dashboard" element={<Dashboard />}></Route>
+            <Route path="bookings" element={<Bookings />}></Route>
+            <Route path="cabins" element={<Cabins />}></Route>
+            <Route path="users" element={<Users />}></Route>
+            <Route path="settings" element={<Settings />}></Route>
+            <Route path="account" element={<Account />}></Route>
+            <Route path="login" element={<Login />}></Route>
+            <Route path="*" element={<PageNotFound />}></Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
       <Toaster
         position="top-center"
-        reverseOrder={false}
-        gutter={8}
-        containerClassName=""
-        containerStyle={{}}
+        gutter={12}
+        containerStyle={{ margin: "8px" }}
         toastOptions={{
-          // Define default options
-          className: "",
-          duration: 5000,
-          style: {
-            background: "#363636",
-            color: "#fff",
-          },
-
-          // Default options for specific types
           success: {
             duration: 3000,
-            theme: {
-              primary: "green",
-              secondary: "black",
-            },
           },
           error: {
             duration: 5000,
-            theme: {
-              primary: "red",
-              secondary: "black",
-            },
+          },
+          style: {
+            fontSize: "16px",
+            maxWidth: "500px",
+            padding: "16px 24px",
+            backgroundColor: "var(--color-grey-0)",
+            color: "var(--color-grey-700)",
           },
         }}
       />
-
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route
-                index
-                element={<Navigate replace to="dashboard" />}
-              ></Route>
-              <Route path="dashboard" element={<Dashboard />}></Route>
-              <Route path="bookings" element={<Bookings />}></Route>
-              <Route path="cabins" element={<Cabins />}></Route>
-              <Route path="users" element={<Users />}></Route>
-              <Route path="settings" element={<Settings />}></Route>
-              <Route path="account" element={<Account />}></Route>
-              <Route path="login" element={<Login />}></Route>
-              <Route path="*" element={<PageNotFound />}></Route>
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </QueryClientProvider>
-    </>
+    </QueryClientProvider>
   );
 };
 
