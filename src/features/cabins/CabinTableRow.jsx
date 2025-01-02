@@ -42,7 +42,7 @@ const CabinTableRow = ({ row }) => {
           align="center"
           sx={{ fontSize: "1.2rem", textAlign: "center" }}
         >
-          {row.discount}
+          {row.discount === 0 ? <span>-</span> : row.discount}
         </TableCell>
         <TableCell
           align="center"
