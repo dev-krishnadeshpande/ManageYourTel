@@ -2,9 +2,9 @@ import Cabin from "../features/cabins/Cabin";
 
 const Cabins = () => {
   return (
-    <div>
+    <>
       <Cabin />
-    </div>
+    </>
   );
 };
 

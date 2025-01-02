@@ -6,8 +6,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-import "./cabin-table.css";
 import CabinTableRow from "./CabinTableRow";
+import "./cabin-table.css";
 
 function createData({
   id,
@@ -21,23 +21,48 @@ function createData({
   return { id, name, maxCapacity, regularPrice, discount, description, image };
 }
 
-// eslint-disable-next-line react/prop-types
 export default function CabinTable({ cabins }) {
   const cabinsData = Object.values(cabins);
 
   const rows = cabinsData.map((cabin) => createData(cabin));
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
+      <TableContainer component={Paper} sx={{ width: "80%", margin: "auto" }}>
+        <Table aria-label="simple table">
+          <TableHead className="table-header">
             <TableRow>
-              <TableCell></TableCell>
-              <TableCell align="right">Cabin</TableCell>
-              <TableCell align="right">Capacity</TableCell>
-              <TableCell align="right">Price</TableCell>
-              <TableCell align="right">Discount</TableCell>
-              <TableCell></TableCell>
+              <TableCell
+                align="center"
+                sx={{ fontSize: "1.4rem", textAlign: "center" }}
+              ></TableCell>
+              <TableCell
+                align="center"
+                sx={{ fontSize: "1.4rem", textAlign: "center" }}
+              >
+                Cabin
+              </TableCell>
+              <TableCell
+                align="center"
+                sx={{ fontSize: "1.4rem", textAlign: "center" }}
+              >
+                Capacity
+              </TableCell>
+              <TableCell
+                align="center"
+                sx={{ fontSize: "1.4rem", textAlign: "center" }}
+              >
+                Price
+              </TableCell>
+              <TableCell
+                align="center"
+                sx={{ fontSize: "1.4rem", textAlign: "center" }}
+              >
+                Discount
+              </TableCell>
+              <TableCell
+                align="center"
+                sx={{ fontSize: "1.4rem", textAlign: "center" }}
+              ></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

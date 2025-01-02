@@ -17,14 +17,37 @@ const CabinTableRow = ({ row }) => {
         key={row.name}
         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
       >
-        <TableCell align="right" className="cabin-image-container">
+        <TableCell align="center" className="cabin-image-container">
           <img src={row.image} alt="cabin-image" className="cabin-image" />
         </TableCell>
-        <TableCell align="right">{row.name}</TableCell>
-        <TableCell align="right">{row.maxCapacity}</TableCell>
-        <TableCell align="right">{row.regularPrice}</TableCell>
-        <TableCell align="right">{row.discount}</TableCell>
-        <TableCell align="right">
+        <TableCell
+          align="center"
+          sx={{ fontSize: "1.2rem", textAlign: "center" }}
+        >
+          {row.name}
+        </TableCell>
+        <TableCell
+          align="center"
+          sx={{ fontSize: "1.2rem", textAlign: "center" }}
+        >
+          {row.maxCapacity}
+        </TableCell>
+        <TableCell
+          align="center"
+          sx={{ fontSize: "1.2rem", textAlign: "center" }}
+        >
+          {row.regularPrice}
+        </TableCell>
+        <TableCell
+          align="center"
+          sx={{ fontSize: "1.2rem", textAlign: "center" }}
+        >
+          {row.discount}
+        </TableCell>
+        <TableCell
+          align="center"
+          sx={{ fontSize: "1.2rem", textAlign: "center" }}
+        >
           <button
             onClick={() =>
               addCabinMutate({
