@@ -1,9 +1,9 @@
-import UpdateSettingsForm from "./UpdateSettingsForm";
+import UpdateSettingForm from "./UpdateSettingForm";
 
 const Setting = () => {
   return (
     <div>
-      <UpdateSettingsForm />
+      <UpdateSettingForm />
     </div>
   );
 };
