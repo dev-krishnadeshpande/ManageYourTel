@@ -7,40 +7,28 @@ import LoadingSpinner from "../../ui/LoadingSpinner";
 import { useUpdateSettings } from "./useUpdateSettings";
 import { Box, Button, TextField } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { useEffect } from "react";
 
 const UpdateSettingForm = () => {
-  const { data: settings, isLoading } = useQuery({
+  const {
+    data: {
+      minBookingLength,
+      maxBookingLength,
+      maxGuestsPerBooking,
+      breakfastPrice,
+    } = {},
+    isLoading,
+  } = useQuery({
     queryKey: ["settings"],
     queryFn: getSettings,
   });
 
-  const { register, handleSubmit, formState, reset } = useForm({
+  const { register, handleSubmit, formState } = useForm({
     defaultValues: {},
   });
   const { errors } = formState;
 
   const { updateSettingsMutate, processingSettingUpdates } =
     useUpdateSettings();
-
-  // Once the data is fetched, update the form default values
-  useEffect(() => {
-    if (settings) {
-      const {
-        minBookingLength,
-        maxBookingLength,
-        maxGuestsPerBooking,
-        breakfastPrice,
-      } = settings;
-
-      reset({
-        minBookingLength,
-        maxBookingLength,
-        maxGuestsPerBooking,
-        breakfastPrice,
-      });
-    }
-  }, [settings, reset]);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -91,6 +79,7 @@ const UpdateSettingForm = () => {
               }}
               margin="dense"
               fullWidth
+              defaultValue={minBookingLength}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -110,6 +99,7 @@ const UpdateSettingForm = () => {
               }}
               margin="dense"
               fullWidth
+              defaultValue={maxBookingLength}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -129,6 +119,7 @@ const UpdateSettingForm = () => {
               }}
               margin="dense"
               fullWidth
+              defaultValue={maxGuestsPerBooking}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -148,6 +139,7 @@ const UpdateSettingForm = () => {
               }}
               margin="dense"
               fullWidth
+              defaultValue={breakfastPrice}
             />
           </Grid>
         </Grid>
