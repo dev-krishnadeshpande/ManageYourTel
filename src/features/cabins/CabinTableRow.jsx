@@ -1,9 +1,11 @@
-import { Button, TableCell, TableRow } from "@mui/material";
+import { TableCell, TableRow } from "@mui/material";
 
 import { useDeleteCabin } from "./useDeleteCabin";
 import { useAddCabin } from "./useAddCabin";
 import Modal from "../../ui/Modal";
 import CreateEditCabinForm from "./CreateEditCabinForm";
+import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
+import "./cabin-table-row.css";
 
 const CabinTableRow = ({ row }) => {
   const deleteCabinMutate = useDeleteCabin();
@@ -23,23 +25,7 @@ const CabinTableRow = ({ row }) => {
         <TableCell align="right">{row.regularPrice}</TableCell>
         <TableCell align="right">{row.discount}</TableCell>
         <TableCell align="right">
-          <Button
-            onClick={() => {
-              deleteCabinMutate(row.id);
-            }}
-            type="small"
-          >
-            Delete
-          </Button>
-          <Modal>
-            <Modal.Open opens="edit-cabin-form">
-              <Button>Edit</Button>
-            </Modal.Open>
-            <Modal.Window name="edit-cabin-form">
-              <CreateEditCabinForm cabinToEdit={row} />
-            </Modal.Window>
-          </Modal>
-          <Button
+          <button
             onClick={() =>
               addCabinMutate({
                 ...row,
@@ -47,10 +33,28 @@ const CabinTableRow = ({ row }) => {
                 id: row.id * 100,
               })
             }
-            type="small"
+            className="action-btn"
           >
-            Duplicate
-          </Button>
+            <HiSquare2Stack />
+          </button>
+          <Modal>
+            <Modal.Open opens="edit-cabin-form">
+              <button className="action-btn">
+                <HiPencil />
+              </button>
+            </Modal.Open>
+            <Modal.Window name="edit-cabin-form">
+              <CreateEditCabinForm cabinToEdit={row} />
+            </Modal.Window>
+          </Modal>
+          <button
+            onClick={() => {
+              deleteCabinMutate(row.id);
+            }}
+            className="action-btn"
+          >
+            <HiTrash />
+          </button>
         </TableCell>
       </TableRow>
     </>
