@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 
-import "./update-settings.css";
+import "./update-settings-form.css";
 import { useQuery } from "@tanstack/react-query";
 import { getSettings } from "../../services/apiSettings";
 import LoadingSpinner from "../../ui/LoadingSpinner";
