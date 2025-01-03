@@ -5,9 +5,14 @@ import Select from "@mui/material/Select";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 
-export default function SortBy({ sortOptions, entityToSort }) {
-  const [entity, seEntity] = useState(sortOptions[0].value);
+export default function SortBy({
+  sortOptions,
+  entityToSort,
+  selectedSortOption = "",
+}) {
+  const [entity, seEntity] = useState(selectedSortOption);
   const [searchParams, setSearchParams] = useSearchParams();
+  console.log("sort entity", entity);
 
   const handleChange = (event) => {
     seEntity(event.target.value);

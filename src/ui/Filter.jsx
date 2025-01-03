@@ -3,21 +3,18 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-export default function Filter({ filterField, filterOptions }) {
-  const [alignment, setAlignment] = useState(filterOptions[0]);
+export default function Filter({
+  filterField,
+  filterOptions,
+  selectedFilterOption = "all",
+}) {
+  const [alignment, setAlignment] = useState(selectedFilterOption);
   const [searchParams, setSearchParams] = useSearchParams();
+  console.log("filter alignment", alignment);
 
   const handleChange = (event, newAlignment) => {
-    let selectedOption;
-    const newAlignmentStrArray = newAlignment.toLowerCase().split(" ");
-    if (newAlignmentStrArray.length > 0) {
-      selectedOption = newAlignmentStrArray.join("-");
-    } else {
-      selectedOption = newAlignment;
-    }
-
     setAlignment(newAlignment);
-    searchParams.set(filterField, selectedOption);
+    searchParams.set(filterField, newAlignment);
     setSearchParams(searchParams);
   };
 
@@ -32,14 +29,14 @@ export default function Filter({ filterField, filterOptions }) {
       >
         {filterOptions.map((option) => (
           <ToggleButton
-            key={option}
-            value={option}
-            disabled={alignment === option}
+            key={option.label}
+            value={option.value}
+            disabled={alignment === option.value}
             sx={{
               fontSize: "1.1rem",
             }}
           >
-            {option}
+            {option.label}
           </ToggleButton>
         ))}
       </ToggleButtonGroup>
