@@ -17,7 +17,8 @@ export default function Cabin() {
   });
 
   const filterOptions = ["All", "No discount", "With discount"];
-  const discountOption = searchParams.get("discount") || "all";
+  const filterField = "discount";
+  const discountOption = searchParams.get(filterField) || "all";
   let filteredCabins = [];
 
   if (discountOption === "all") {
@@ -38,7 +39,7 @@ export default function Cabin() {
     <>
       <div className="cabin-content-header">
         <h2>All Rooms</h2>
-        <Filter optionsList={filterOptions} />
+        <Filter filterField={filterField} filterOptions={filterOptions} />
       </div>
       <CabinTable cabins={filteredCabins} />
       <AddCabin />

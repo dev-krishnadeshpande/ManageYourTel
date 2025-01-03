@@ -3,8 +3,8 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-export default function Filter({ optionsList }) {
-  const [alignment, setAlignment] = useState(optionsList[0]);
+export default function Filter({ filterField, filterOptions }) {
+  const [alignment, setAlignment] = useState(filterOptions[0]);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleChange = (event, newAlignment) => {
@@ -15,10 +15,9 @@ export default function Filter({ optionsList }) {
     } else {
       selectedOption = newAlignment;
     }
-    console.log("selectedOption", selectedOption);
 
     setAlignment(newAlignment);
-    searchParams.set("discount", selectedOption);
+    searchParams.set(filterField, selectedOption);
     setSearchParams(searchParams);
   };
 
@@ -30,8 +29,12 @@ export default function Filter({ optionsList }) {
       onChange={handleChange}
       aria-label="Platform"
     >
-      {optionsList.map((option) => (
-        <ToggleButton key={option} value={option}>
+      {filterOptions.map((option) => (
+        <ToggleButton
+          key={option}
+          value={option}
+          disabled={alignment === option}
+        >
           {option}
         </ToggleButton>
       ))}
