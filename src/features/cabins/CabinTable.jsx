@@ -27,7 +27,7 @@ export default function CabinTable({ cabins }) {
   const rows = cabinsData.map((cabin) => createData(cabin));
   return (
     <>
-      <TableContainer component={Paper} sx={{ width: "80%", margin: "auto" }}>
+      <TableContainer component={Paper} sx={{ width: "86%", margin: "auto" }}>
         <Table aria-label="simple table">
           <TableHead className="table-header">
             <TableRow>
