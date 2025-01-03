@@ -5,7 +5,7 @@ import CabinTable from "./CabinTable";
 import AddCabin from "./AddCabin";
 import "./cabin.css";
 import useFilterCabins from "./useFilterCabins";
-import CabinPageContentHeader from "./CabinPageContentHeader";
+import TableHeader from "../../ui/TableHeader";
 import useSortCabins from "./useSortCabins";
 import { filterCabinOptions, sortCabinOptions } from "../../utils/configs";
 
@@ -33,7 +33,8 @@ export default function Cabin() {
 
   return (
     <>
-      <CabinPageContentHeader
+      <TableHeader
+        tableEntity="Rooms"
         filterField={filterField}
         filterOptions={filterCabinOptions}
         sortInput={sortInput}

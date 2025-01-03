@@ -10,7 +10,6 @@ export default function Filter({
 }) {
   const [alignment, setAlignment] = useState(selectedFilterOption);
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log("filter alignment", alignment);
 
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);

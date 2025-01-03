@@ -12,7 +12,6 @@ export default function SortBy({
 }) {
   const [entity, seEntity] = useState(selectedSortOption);
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log("sort entity", entity);
 
   const handleChange = (event) => {
     seEntity(event.target.value);
