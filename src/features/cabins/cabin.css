@@ -1,7 +1,15 @@
 .cabin-content-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 1rem;
   width: 80%;
   margin: auto;
+}
+
+.cabin-operations-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
 }

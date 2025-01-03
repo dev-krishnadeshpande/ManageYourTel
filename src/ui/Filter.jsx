@@ -22,22 +22,27 @@ export default function Filter({ filterField, filterOptions }) {
   };
 
   return (
-    <ToggleButtonGroup
-      color="primary"
-      value={alignment}
-      exclusive
-      onChange={handleChange}
-      aria-label="Platform"
-    >
-      {filterOptions.map((option) => (
-        <ToggleButton
-          key={option}
-          value={option}
-          disabled={alignment === option}
-        >
-          {option}
-        </ToggleButton>
-      ))}
-    </ToggleButtonGroup>
+    <div>
+      <ToggleButtonGroup
+        color="primary"
+        value={alignment}
+        exclusive
+        onChange={handleChange}
+        aria-label="Platform"
+      >
+        {filterOptions.map((option) => (
+          <ToggleButton
+            key={option}
+            value={option}
+            disabled={alignment === option}
+            sx={{
+              fontSize: "1.1rem",
+            }}
+          >
+            {option}
+          </ToggleButton>
+        ))}
+      </ToggleButtonGroup>
+    </div>
   );
 }
