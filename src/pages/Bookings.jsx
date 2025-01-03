@@ -1,5 +1,11 @@
+import Booking from "../features/bookings/Booking";
+
 const Bookings = () => {
-  return <div>Bookings</div>;
+  return (
+    <>
+      <Booking />
+    </>
+  );
 };
 
 export default Bookings;
