@@ -30,7 +30,7 @@ const CabinTableRow = ({ row }) => {
           align="center"
           sx={{ fontSize: "1.2rem", textAlign: "center" }}
         >
-          {row.maxCapacity}
+          {`Fits upto to ${row.maxCapacity} guests`}
         </TableCell>
         <TableCell
           align="center"
