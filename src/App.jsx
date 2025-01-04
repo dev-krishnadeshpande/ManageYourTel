@@ -12,6 +12,7 @@ import PageNotFound from "./pages/PageNotFound";
 import Layout from "./ui/Layout";
 import { Toaster } from "react-hot-toast";
 import LoginPage from "./pages/LoginPage";
+import Signup from "./features/authentication/Signup";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ const App = () => {
             <Route path="settings" element={<Settings />}></Route>
             <Route path="account" element={<Account />}></Route>
             <Route path="login" element={<LoginPage />}></Route>
+            <Route path="signup" element={<Signup />}></Route>
             <Route path="*" element={<PageNotFound />}></Route>
           </Route>
         </Routes>

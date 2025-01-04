@@ -1,5 +1,11 @@
+import User from "../features/users/User";
+
 const Users = () => {
-  return <div>Users</div>;
+  return (
+    <>
+      <User />
+    </>
+  );
 };
 
 export default Users;

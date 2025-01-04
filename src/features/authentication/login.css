@@ -1,57 +1,57 @@
-form {
-  display: inline-block;
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-container {
+  width: 84%;
+  padding: 2.4rem 4rem;
+  /* Box */
+  background-color: var(--color-grey-0);
+  border: 1px solid var(--color-grey-100);
+  border-radius: var(--border-radius-md);
+}
+
+.field-container {
+  display: grid;
   align-items: center;
-  height: 270px;
-  width: 350px;
-  margin-bottom: 170px;
-}
-.text_area {
-  align-content: center;
-  border-radius: 22px;
-  margin-bottom: 35px;
-  width: 100%;
-  height: 64px;
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+  grid-template-columns: 24rem 1fr 1.2fr;
+  gap: 2.4rem;
+  padding: 1.2rem 0;
 }
 
-.text_input {
-  margin-top: 1.2rem;
-  font-family: "Montserrat regular";
-  font-size: 20px;
-  border: none;
-  width: 80%;
+.field-container:first-child {
+  padding-top: 0;
 }
 
-.btn {
-  margin-top: 28px;
-  width: 165px;
-  height: 60px;
-  border-radius: 30px;
-  background: #b58ded;
-  border: none;
-  font-family: "Montserrat";
-  font-size: 20px;
-  color: #ffffff;
-  box-shadow: 0 4px 8px 0 rgba(181, 141, 237, 0.7),
-    0 6px 20px 0 rgba(181, 141, 237, 0.9);
-  cursor: pointer;
+.field-container:last-child {
+  padding-bottom: 0;
 }
 
-.login {
-  display: inline-block;
-  background: #ffffff;
-  width: 434px;
-  height: 700px;
-  margin-top: 10%;
-  border-radius: 22px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.field-container:not(:last-child) {
+  border-bottom: 1px solid var(--color-grey-100);
 }
 
-.link {
-  color: #0e4579;
-  font-family: "Montserrat light";
-  font-size: 18px;
-  cursor: pointer;
-  display: block;
-  text-decoration: none;
+.field-container button {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.2rem;
+}
+
+.field-label {
+  font-weight: 500;
+}
+
+.field-input {
+  border: 1px solid var(--color-grey-300);
+  background-color: var(--color-grey-0);
+  border-radius: var(--border-radius-sm);
+  padding: 0.8rem 1.2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.field-error {
+  font-size: 1.4rem;
+  color: var(--color-red-700);
 }
