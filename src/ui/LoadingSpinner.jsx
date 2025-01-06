@@ -1,10 +1,10 @@
 import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
+import "./loadingSpinner.css";
 
-export default function CircularIndeterminate() {
+export default function CircularIndeterminate({ size = "4rem" }) {
   return (
-    <Box sx={{ display: "flex" }}>
-      <CircularProgress />
-    </Box>
+    <div className="loading-spinner-container">
+      <CircularProgress size={size} />
+    </div>
   );
 }
