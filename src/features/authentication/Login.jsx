@@ -1,15 +1,17 @@
 import Button from "../../ui/Button";
 import "./login.css";
 import { useForm } from "react-hook-form";
+import LoadingSpinner from "../../ui/LoadingSpinner";
+import useLogin from "./useLogin";
 
 export default function Login() {
   const { register, handleSubmit, reset, formState } = useForm();
   const { errors } = formState;
+  const { login, isLoading } = useLogin();
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   function onSubmit(data) {
-    console.log(data);
-
+    login(data);
     reset();
   }
 
@@ -54,7 +56,9 @@ export default function Login() {
           <span className="field-error">{errors?.password?.message}</span>
         </div>
         <div>
-          <Button type="submit">Login</Button>
+          <Button type="submit">
+            {isLoading ? <LoadingSpinner size="1rem" /> : "Login"}
+          </Button>
         </div>
       </form>
     </div>

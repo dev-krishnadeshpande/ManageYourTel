@@ -13,6 +13,7 @@ import Layout from "./ui/Layout";
 import { Toaster } from "react-hot-toast";
 import LoginPage from "./pages/LoginPage";
 import Signup from "./features/authentication/Signup";
+import ProtectedRoute from "./features/authentication/ProtectedRoute";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -23,7 +24,13 @@ const App = () => {
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
         <Routes>
-          <Route element={<Layout />}>
+          <Route
+            element={
+              <ProtectedRoute>
+                <Layout />
+              </ProtectedRoute>
+            }
+          >
             <Route index element={<Navigate replace to="dashboard" />}></Route>
             <Route path="dashboard" element={<Dashboard />}></Route>
             <Route path="bookings" element={<Bookings />}></Route>
@@ -31,10 +38,10 @@ const App = () => {
             <Route path="users" element={<Users />}></Route>
             <Route path="settings" element={<Settings />}></Route>
             <Route path="account" element={<Account />}></Route>
-            <Route path="login" element={<LoginPage />}></Route>
             <Route path="signup" element={<Signup />}></Route>
             <Route path="*" element={<PageNotFound />}></Route>
           </Route>
+          <Route path="login" element={<LoginPage />}></Route>
         </Routes>
       </BrowserRouter>
       <Toaster
