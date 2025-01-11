@@ -1,17 +1,22 @@
 import Button from "../../ui/Button";
 import "./signup.css";
 import { useForm } from "react-hook-form";
+import { useSignup } from "./useSignup";
+import LoadingSpinner from "../../ui/LoadingSpinner";
 
 export default function Signup() {
   const { register, handleSubmit, reset, formState, getValues } = useForm();
   const { errors } = formState;
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const { signup, isPending } = useSignup();
 
   function onSubmit(data) {
     console.log(data);
-
+    signup(data);
     reset();
   }
+
+  if (isPending) return <LoadingSpinner />;
 
   return (
     <div className="signup-form-container">
@@ -74,7 +79,7 @@ export default function Signup() {
           </label>
           <input
             className="field-input"
-            type="confirmPassword"
+            type="password"
             id="confirmPassword"
             name="confirmPassword"
             {...register("confirmPassword", {
@@ -87,7 +92,9 @@ export default function Signup() {
                 value === getValues().password || "Passwords should match",
             })}
           />
-          <span className="field-error">{errors?.password?.message}</span>
+          <span className="field-error">
+            {errors?.confirmPassword?.message}
+          </span>
         </div>
         <div>
           <Button type="submit">Signup</Button>
