@@ -1,12 +1,14 @@
-import Button from "../../ui/Button";
+import ButtonIcon from "../../ui/ButtonIcon";
 import { useLogout } from "./useLogout";
+import { HiArrowRightOnRectangle } from "react-icons/hi2";
+import LoadingSpinner from "../../ui/LoadingSpinner";
 
 const Logout = () => {
-  const { logout } = useLogout();
+  const { logout, isPending: isLoading } = useLogout();
   return (
-    <>
-      <Button onClick={() => logout()}>Logout</Button>
-    </>
+    <ButtonIcon disabled={isLoading} onClickHandler={logout}>
+      {!isLoading ? <HiArrowRightOnRectangle /> : <LoadingSpinner />}
+    </ButtonIcon>
   );
 };
 
