@@ -78,6 +78,10 @@ export default function BookingTable({ bookings }) {
               >
                 Amount
               </TableCell>
+              <TableCell
+                align="center"
+                sx={{ fontSize: "1.4rem", textAlign: "center" }}
+              ></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
