@@ -14,6 +14,7 @@ import { Toaster } from "react-hot-toast";
 import LoginPage from "./pages/LoginPage";
 import Signup from "./features/authentication/Signup";
 import ProtectedRoute from "./features/authentication/ProtectedRoute";
+import UploadData from "./features/dummyData/UploadData";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ const App = () => {
             <Route path="settings" element={<Settings />}></Route>
             <Route path="account" element={<Account />}></Route>
             <Route path="signup" element={<Signup />}></Route>
+            <Route path="data" element={<UploadData />}></Route>
             <Route path="*" element={<PageNotFound />}></Route>
           </Route>
           <Route path="login" element={<LoginPage />}></Route>

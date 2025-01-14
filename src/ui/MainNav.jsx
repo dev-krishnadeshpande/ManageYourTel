@@ -7,6 +7,7 @@ import {
   HiOutlineUsers,
 } from "react-icons/hi2";
 import "./main-nav.css"; // Import the CSS file
+import { FaDatabase } from "react-icons/fa";
 
 function MainNav() {
   return (
@@ -40,6 +41,12 @@ function MainNav() {
           <NavLink to="/settings" className="styled-navlink">
             <HiOutlineCog6Tooth />
             <span>Settings</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/data" className="styled-navlink">
+            <FaDatabase />
+            <span>Data</span>
           </NavLink>
         </li>
       </ul>

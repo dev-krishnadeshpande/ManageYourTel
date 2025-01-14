@@ -1,0 +1,15 @@
+.upload-data-container {
+  width: 86%;
+  margin: auto;
+}
+
+.upload-data-title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+.data-uploader {
+  width: 48%;
+  margin: auto;
+}
