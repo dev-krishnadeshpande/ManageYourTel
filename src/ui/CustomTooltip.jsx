@@ -27,11 +27,8 @@ const LightTooltip = styled(({ className, ...props }) => (
   },
 }));
 
-const CustomTooltip = ({ children, ...props }) => {
-  console.log("children", children);
-  console.log("props", props);
-
-  return <LightTooltip {...props}>{children}</LightTooltip>;
-};
+const CustomTooltip = ({ children, ...props }) => (
+  <LightTooltip {...props}>{children}</LightTooltip>
+);
 
 export default CustomTooltip;
