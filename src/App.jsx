@@ -15,6 +15,8 @@ import LoginPage from "./pages/LoginPage";
 import Signup from "./features/authentication/Signup";
 import ProtectedRoute from "./features/authentication/ProtectedRoute";
 import UploadData from "./features/dummyData/UploadData";
+import Booking from "./pages/Booking";
+import Checkin from "./pages/Checkin";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -35,6 +37,8 @@ const App = () => {
             <Route index element={<Navigate replace to="dashboard" />}></Route>
             <Route path="dashboard" element={<Dashboard />}></Route>
             <Route path="bookings" element={<Bookings />}></Route>
+            <Route path="bookings/:bookingId" element={<Booking />}></Route>
+            <Route path="checkin/:bookingId" element={<Checkin />} />
             <Route path="cabins" element={<Cabins />}></Route>
             <Route path="users" element={<Users />}></Route>
             <Route path="settings" element={<Settings />}></Route>
