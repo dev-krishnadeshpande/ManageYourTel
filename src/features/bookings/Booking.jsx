@@ -3,6 +3,8 @@ import BookingTable from "./BookingTable";
 import TableHeader from "../../ui/TableHeader";
 import { filterBookingOptions, sortBookingOptions } from "../../utils/configs";
 import useGetBookings from "./useGetBookings";
+import "./booking.css";
+import TablePaginationComponent from "../../ui/TablePaginationComponent";
 
 const Booking = () => {
   //1. Filter
@@ -14,8 +16,13 @@ const Booking = () => {
     sortOptions: sortBookingOptions,
   };
 
-  const { bookings, isLoading, selectedFilterOption, selectedSortOption } =
-    useGetBookings(filterField);
+  const {
+    bookings,
+    count: bookingsCount,
+    isLoading,
+    selectedFilterOption,
+    selectedSortOption,
+  } = useGetBookings(filterField);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -32,6 +39,9 @@ const Booking = () => {
         selectedSortOption={selectedSortOption}
       />
       <BookingTable bookings={bookings} />
+      <div className="pagination-control">
+        <TablePaginationComponent totalRowCount={bookingsCount} />
+      </div>
     </>
   );
 };

@@ -10,11 +10,13 @@ export default function useGetBookings(filterField) {
   const selectedSortOption = searchParams.get("sortBy") || "";
   const [sortBy, sortOrder] = selectedSortOption && selectedSortOption.split("-");
 
+  // PAGINATION
+  const selectedPage = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
 
-  const { data: bookings = {}, isLoading } = useQuery({
-    queryKey: ["bookings", selectedFilterOption, selectedSortOption],
-    queryFn: () => getBookings(selectedFilterOption, sortBy, sortOrder),
+  const { data: { data: bookings, count } = {}, isLoading } = useQuery({
+    queryKey: ["bookings", selectedFilterOption, selectedSortOption, selectedPage],
+    queryFn: () => getBookings(selectedFilterOption, sortBy, sortOrder, selectedPage),
   });
 
-  return { bookings, isLoading, selectedFilterOption, selectedSortOption };
+  return { bookings, count, isLoading, selectedFilterOption, selectedSortOption, selectedPage };
 }

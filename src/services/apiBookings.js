@@ -16,7 +16,7 @@ export async function getBooking(id) {
   return data;
 }
 
-export async function getBookings(filterBy, sortBy, sortOrder) {
+export async function getBookings(filterBy, sortBy, sortOrder, selectedPage) {
   // Build the query
   let query = supabase
     .from("bookings")
@@ -34,8 +34,14 @@ export async function getBookings(filterBy, sortBy, sortOrder) {
     query = query.order(sortBy, { ascending: sortOrder === "asc" });
   }
 
+  if (selectedPage || selectedPage == 0) {
+    const from = selectedPage * 10;
+    const to = from + 10 - 1;
+    query = query.range(from, to);
+  }
+
   // Execute the query
-  const { data, error } = await query;
+  const { data, error, count } = await query;
 
   // Handle errors
   if (error) {
@@ -43,7 +49,7 @@ export async function getBookings(filterBy, sortBy, sortOrder) {
     throw new Error("Error fetching bookings");
   }
 
-  return data;
+  return { data, count };
 }
 
 
