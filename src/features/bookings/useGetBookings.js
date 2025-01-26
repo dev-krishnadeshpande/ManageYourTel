@@ -11,7 +11,7 @@ export default function useGetBookings(filterField) {
   const [sortBy, sortOrder] = selectedSortOption && selectedSortOption.split("-");
 
   // PAGINATION
-  const selectedPage = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
+  const selectedPage = !searchParams.get("page") ? 0 : Number(searchParams.get("page"));
 
   const { data: { data: bookings, count } = {}, isLoading } = useQuery({
     queryKey: ["bookings", selectedFilterOption, selectedSortOption, selectedPage],

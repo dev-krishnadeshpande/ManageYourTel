@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 export default function TablePaginationComponent({ totalRowCount }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedPage = !searchParams.get("page")
-    ? 1
+    ? 0
     : Number(searchParams.get("page"));
   const [page, setPage] = React.useState(selectedPage);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
