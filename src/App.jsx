@@ -2,7 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import Dashboard from "./pages/Dashboard";
+import DashboardPage from "./pages/DashboardPage";
 import Bookings from "./pages/Bookings";
 import Cabins from "./pages/Cabins";
 import Users from "./pages/Users";
@@ -17,6 +17,7 @@ import ProtectedRoute from "./features/authentication/ProtectedRoute";
 import UploadData from "./features/dummyData/UploadData";
 import Booking from "./pages/Booking";
 import Checkin from "./pages/Checkin";
+import Reception from "./pages/Reception";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -35,11 +36,12 @@ const App = () => {
             }
           >
             <Route index element={<Navigate replace to="dashboard" />}></Route>
-            <Route path="dashboard" element={<Dashboard />}></Route>
+            <Route path="dashboard" element={<DashboardPage />}></Route>
             <Route path="bookings" element={<Bookings />}></Route>
             <Route path="bookings/:bookingId" element={<Booking />}></Route>
             <Route path="checkin/:bookingId" element={<Checkin />} />
             <Route path="cabins" element={<Cabins />}></Route>
+            <Route path="reception" element={<Reception />}></Route>
             <Route path="users" element={<Users />}></Route>
             <Route path="settings" element={<Settings />}></Route>
             <Route path="account" element={<Account />}></Route>
