@@ -50,7 +50,7 @@ const CheckinBooking = () => {
     guests.fullName
   } has paid the total amount of ${breakfastAmount} (${formatCurrency(
     totalPrice
-  )} + ${formatCurrency(optionalBreakfastPrice)}))`;
+  )}${addBreakfast ? ` + ${formatCurrency(optionalBreakfastPrice)}` : ""})`;
 
   function handleCheckin() {
     if (!confirmPaid) return;
