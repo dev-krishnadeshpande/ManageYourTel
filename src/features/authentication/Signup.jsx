@@ -11,7 +11,6 @@ export default function Signup() {
   const { signup, isPending } = useSignup();
 
   function onSubmit(data) {
-    console.log(data);
     signup(data);
     reset();
   }
