@@ -18,6 +18,7 @@ import UploadData from "./features/dummyData/UploadData";
 import Booking from "./pages/Booking";
 import Checkin from "./pages/Checkin";
 import Reception from "./pages/Reception";
+import CreateBooking from "./pages/CreateBooking";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -47,6 +48,7 @@ const App = () => {
             <Route path="account" element={<Account />}></Route>
             <Route path="signup" element={<Signup />}></Route>
             <Route path="data" element={<UploadData />}></Route>
+            <Route path="onboard" element={<CreateBooking />}></Route>
             <Route path="*" element={<PageNotFound />}></Route>
           </Route>
           <Route path="login" element={<LoginPage />}></Route>
