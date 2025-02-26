@@ -71,7 +71,6 @@ const CreateBookingForm = ({ cabinId, guestId }) => {
               helperText={errors?.startDate?.message}
             />
           </Grid>
-
           {/* End Date Field */}
           <Grid xs={12}>
             <TextField
@@ -84,7 +83,6 @@ const CreateBookingForm = ({ cabinId, guestId }) => {
               helperText={errors?.endDate?.message}
             />
           </Grid>
-
           {/* Has Breakfast Field */}
           <Grid xs={12}>
             <FormControlLabel
@@ -92,7 +90,6 @@ const CreateBookingForm = ({ cabinId, guestId }) => {
               label="Has Breakfast"
             />
           </Grid>
-
           {/* Observations Field */}
           <Grid xs={12}>
             <TextField
@@ -106,7 +103,6 @@ const CreateBookingForm = ({ cabinId, guestId }) => {
               helperText={errors?.observations?.message}
             />
           </Grid>
-
           {/* Is Paid Field */}
           <Grid xs={12}>
             <FormControlLabel
@@ -114,7 +110,6 @@ const CreateBookingForm = ({ cabinId, guestId }) => {
               label="Is Paid"
             />
           </Grid>
-
           {/* Number of Guests Field */}
           <Grid xs={12}>
             <TextField
@@ -129,7 +124,6 @@ const CreateBookingForm = ({ cabinId, guestId }) => {
               helperText={errors?.numGuests?.message}
             />
           </Grid>
-
           {/* Cabin ID Field */}
           <Grid xs={12}>
             <TextField
@@ -143,7 +137,6 @@ const CreateBookingForm = ({ cabinId, guestId }) => {
               disabled // Disable the field to prevent editing
             />
           </Grid>
-
           {/* Guest ID Field */}
           <Grid xs={12}>
             <TextField
@@ -157,9 +150,8 @@ const CreateBookingForm = ({ cabinId, guestId }) => {
               disabled // Disable the field to prevent editing
             />
           </Grid>
-
           {/* Cabin Price Field */}
-          <Grid xs={12}>
+          {/* <Grid xs={12}>
             <TextField
               fullWidth
               label="Cabin Price"
@@ -170,8 +162,7 @@ const CreateBookingForm = ({ cabinId, guestId }) => {
                 disabled: true, // Make sure it stays disabled (so users can't edit it)
               })}
             />
-          </Grid>
-
+          </Grid> */}
           {/* Extras Price Field */}
           <Grid xs={12}>
             <TextField
@@ -186,7 +177,6 @@ const CreateBookingForm = ({ cabinId, guestId }) => {
               helperText={errors?.extrasPrice?.message}
             />
           </Grid>
-
           {/* Number of Nights Field */}
           <Grid xs={12}>
             <TextField
@@ -201,9 +191,8 @@ const CreateBookingForm = ({ cabinId, guestId }) => {
               helperText={errors?.numNights?.message}
             />
           </Grid>
-
           {/* Total Price Field */}
-          <Grid xs={12}>
+          {/* <Grid xs={12}>
             <TextField
               fullWidth
               label="Total Price"
@@ -214,8 +203,42 @@ const CreateBookingForm = ({ cabinId, guestId }) => {
                 disabled: true, // Make sure it stays disabled (so users can't edit it)
               })}
             />
+          </Grid> */}
+          ...
+          {/* Cabin Price Field */}
+          <Grid xs={12}>
+            <TextField
+              fullWidth
+              label="Cabin Price"
+              variant="outlined"
+              type="number"
+              value={cabin?.regularPrice}
+              disabled
+            />
+            <input
+              type="hidden"
+              {...register("cabinPrice", {
+                value: cabin?.regularPrice,
+              })}
+            />
           </Grid>
-
+          {/* Total Price Field */}
+          <Grid xs={12}>
+            <TextField
+              fullWidth
+              label="Total Price"
+              variant="outlined"
+              type="number"
+              value={totalPrice}
+              disabled
+            />
+            <input
+              type="hidden"
+              {...register("totalPrice", {
+                value: totalPrice,
+              })}
+            />
+          </Grid>
           {/* Status Field */}
           <Grid xs={12}>
             <TextField
@@ -228,7 +251,6 @@ const CreateBookingForm = ({ cabinId, guestId }) => {
               defaultValue="unconfirmed"
             />
           </Grid>
-
           <Grid xs={12}>
             <TextField
               fullWidth
@@ -242,7 +264,6 @@ const CreateBookingForm = ({ cabinId, guestId }) => {
               defaultValue="offline"
             />
           </Grid>
-
           {/* Submit Button */}
           <Grid xs={12}>
             <Button
