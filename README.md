@@ -45,8 +45,7 @@ npm run build
 # This will create an optimized production build in the dist directory.
 ```
 
-- Backend Setup
-  The backend is set up using Supabase. You can find the Supabase configuration in the supabase.js file.
+- The backend is set up using Supabase. You can find the Supabase configuration in the supabase.js file.
 
 Deployments:
 
