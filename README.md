@@ -1,4 +1,5 @@
-ManageYourTel
+# ManageYourTel
+
 It is a comprehensive hotel management solution that serves as a one-stop solution for managing your hotel operations. As the name suggests, ManageYourTel allows you to manage bookings across the online booking platforms in one place, create offline bookings, manage staff, and analyze booking statistics.
 
 Functional Description
