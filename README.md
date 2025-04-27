@@ -14,31 +14,35 @@ React Query: A library for managing server state in React applications.
 Supabase: An open-source Firebase alternative that provides a backend as a service.
 Vite: A build tool that provides a faster and leaner development experience for modern web projects.
 
-Getting Started
-Prerequisites
-Node.js (v14 or higher)
-npm (v6 or higher)
+## 📜 Installation & Setup
 
+Prerequisites
+
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+
+```sh
 Installation
 
-Clone the repository:
+# Clone the repository:
 git clone https://github.com/dev-krishnadeshpande/manageyourtel.git
 cd manageyourtel
 
-Install the dependencies:
+# Install the dependencies:
 npm install
 
-Running the Project
-To start the development server, run:
+# Running the Project
+# To start the development server, run:
 npm run dev
 
-This will start the Vite development server and open the application in your default web browser.
+# This will start the Vite development server and open the application in your default web browser.
 
-Building the Project
-To build the project for production, run:
+# Building the Project
+# To build the project for production, run:
 npm run build
 
-This will create an optimized production build in the dist directory.
+# This will create an optimized production build in the dist directory.
+```
 
 Backend Setup
 The backend is set up using Supabase. You can find the Supabase configuration in the supabase.js file.
